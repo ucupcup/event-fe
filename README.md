@@ -1,39 +1,29 @@
-# Event Project — Modern Ticketing Frontend
+<p align="center">
+  <img src="/brand.svg" alt="Event Project" width="96" height="96" />
+  <h1 align="center">Event Project - Modern Ticketing Frontend</h1>
+  <p align="center">UI futuristik untuk pembelian tiket yang cepat, jelas, dan nyaman di perangkat mobile.</p>
+  <p align="center">
+    <a href="#fitur-utama">Fitur</a> •
+    <a href="#demo-cepat">Demo</a> •
+    <a href="#teknologi">Teknologi</a> •
+    <a href="#struktur-proyek">Struktur</a> •
+    <a href="#rute-halaman">Rute</a> •
+    <a href="#pengembangan">Pengembangan</a>
+  </p>
+</p>
 
-Event Project adalah aplikasi frontend untuk pembelian tiket event dengan tampilan modern, fokus konversi, dan pengalaman yang ramah mobile. Dibangun menggunakan React + TypeScript + Vite, aplikasi ini menyajikan katalog event bergaya "bento" futuristik, halaman detail event, keranjang belanja dengan pilihan tipe tiket dan kuantitas, serta proses checkout sederhana.
+---
 
 ## Fitur Utama
 
-- Navigasi modern dan responsif
-  - Navbar sticky dengan logo kustom, ikon keranjang, drawer mobile, dan active state yang jelas.
-  - Quick Find (Ctrl+K) via command palette (opsional disembunyikan pada layar kecil).
-- Beranda (Home)
-  - Hero section dengan CTA.
-  - Bento grid futuristik: kartu hero/tall/wide/square/small, overlay neon, scanline, tilt/glare mengikuti kursor.
-  - Panel "Upcoming Event" + "Participant" pada sisi kanan untuk menonjolkan event terbesar.
-- Halaman Detail Event (`/events/:id`)
-  - Pemilihan tipe tiket (radio) + jumlah (+/−) + tombol "Tambahkan ke Keranjang".
-- Keranjang & Checkout (`/checkout`)
-  - Cart global dengan item per event + tipe tiket.
-  - Pilih item yang akan dibayar (checkbox), atur kuantitas, hapus item, clear cart.
-  - Ringkasan: subtotal, biaya layanan, total; tombol bayar aktif jika ada item terpilih.
-- Aksesibilitas & responsif
-  - Focus-visible, reduced motion (mematikan tilt/scanline saat preferensi sistem aktif), layout rapih untuk tablet & ponsel.
+- Bento grid futuristik: hero/tall/wide/square/small, glow neon, glare, dan tilt ringan
+- CTA jelas: bar "Mulai dari" + tombol "Beli" selalu terlihat di setiap kartu
+- Detail Event: pilih tipe tiket (radio), jumlah (+/−), lalu tambahkan ke keranjang
+- Keranjang & Checkout: pilih item yang akan dibayar, atur qty, hapus/clear, total dinamis
+- Navbar responsif: logo kustom, drawer mobile, ikon keranjang dengan badge jumlah
+- Aksesibilitas: focus-visible dan dukungan prefers-reduced-motion
 
-## Teknologi
-
-- React 19, TypeScript 5, Vite 7
-- React Router 7
-- CSS murni (tanpa framework) dengan utility ringan yang disusun khusus untuk proyek ini
-
-## Struktur Proyek (ringkas)
-
-- `src/app` — router, providers (CartProvider, AppProviders)
-- `src/presentation` — halaman & layout (Home, Tickets, Checkout, Event Details, NotFound, MainLayout)
-- `src/shared/data` — data event dummy + helper harga (IDR)
-- `public` — aset publik (favicon, brand.svg)
-
-## Menjalankan Secara Lokal
+## Demo Cepat
 
 ```bash
 cd frontend
@@ -41,45 +31,59 @@ npm install
 npm run dev
 ```
 
-Build produksi dan preview:
+Build & preview produksi:
 
 ```bash
 npm run build
 npm run preview
 ```
 
+## Teknologi
+
+- React 19 • TypeScript 5 • Vite 7
+- React Router 7
+- CSS murni (komponen + utilitas khusus)
+
+## Struktur Proyek
+
+```
+frontend/
+├─ public/
+│  ├─ brand.svg           # ikon/brand
+│  └─ favicon.svg         # favicon
+├─ src/
+│  ├─ app/                # router, providers (CartProvider, AppProviders)
+│  ├─ presentation/       # pages & layouts (Home, Tickets, Checkout, EventDetails, MainLayout)
+│  ├─ shared/data/        # events.ts (dummy data + helper harga IDR)
+│  └─ index.css           # tema global, bento, navbar, responsif
+└─ README.md
+```
+
 ## Rute Halaman
 
-- `/` — Home (hero + bento + highlight)
-- `/tickets` — Daftar/seleksi tiket (placeholder yang dapat dihubungkan ke data)
-- `/events/:id` — Detail event (pilih tipe tiket + qty)
-- `/checkout` — Keranjang + pembayaran
+- `/`  - Home (hero + bento + highlight)
+- `/tickets`  - Daftar/seleksi tiket
+- `/events/:id`  - Detail event (tipe tiket + qty + add to cart)
+- `/checkout`  - Keranjang + pembayaran
 
-## Tentang Desain
+## Pengembangan
 
-- Bento futuristik: neon tint per kategori, glass CTA bar "Mulai dari" + tombol "Beli" yang selalu terlihat.
-- Panel highlight kanan menampilkan event terbesar termasuk avatar participant dan metrik ringkas.
-- Navbar ikon keranjang tanpa background, hover/pressed yang lembut, dan badge jumlah dinamis.
+- Skrip NPM:
+  - `dev`  - Vite dev server
+  - `build`  - tsc + vite build
+  - `preview`  - preview hasil build
+  - `lint`  - lint (opsional)
 
-## Aksesibilitas
+- Penyesuaian cepat:
+  - Warna brand: ubah variabel di `src/index.css` (`--brand`, `--brand-500`, dst.)
+  - Data event: `src/shared/data/events.ts` (judul, lokasi, kategori, tipe tiket/harga)
 
-- Focus-visible pada tombol/elemen interaktif.
-- `prefers-reduced-motion` didukung untuk mengurangi animasi.
+## Catatan Desain
 
-## Penyesuaian
+- Panel kanan "Upcoming Event" berisi highlight event terbesar + avatar participant
+- Pada layar kecil, elemen sekunder disederhanakan agar fokus ke CTA dan konten utama
 
-- Warna brand: ubah variabel CSS pada `src/index.css` (`--brand`, `--brand-500`, dll.).
-- Data event: kelola pada `src/shared/data/events.ts` (termasuk tipe tiket & harga IDR).
-
-## Skrip NPM
-
-- `npm run dev` — jalankan pengembangan (Vite)
-- `npm run build` — build produksi (tsc + vite build)
-- `npm run preview` — preview hasil build
-- `npm run lint` — lint (opsional, tergantung konfigurasi ESLint)
-
-## Catatan
-
-- Proyek ini menggunakan data dummy. Integrasi API/Backend dapat dilakukan dengan mengganti `shared/data` menjadi fetch dari service dan menyambungkan tipe tiket, harga, serta stok.
+---
 
 Selamat berkarya dan semoga lancar menjual tiket event Anda!
+
