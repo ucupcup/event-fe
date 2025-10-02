@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="ring" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+  <!-- glowing rounded square ring -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="none" stroke="url(#ring)" stroke-width="4"/>
+  <rect x="8" y="8" width="48" height="48" rx="12" fill="none" stroke="url(#ring)" stroke-opacity=".35" stroke-width="2"/>
+  <!-- stylized ticket glyph -->
+  <g fill="url(#glyph)">
+    <path d="M18 24a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v3a4 4 0 0 0 0 8v3a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4v-3a4 4 0 0 0 0-8v-3z"/>
+    <rect x="24" y="26" width="16" height="2.5" rx="1.25"/>
+    <rect x="24" y="31" width="16" height="2.5" rx="1.25"/>
+    <rect x="24" y="36" width="11" height="2.5" rx="1.25"/>
+  </g>
+</svg>
