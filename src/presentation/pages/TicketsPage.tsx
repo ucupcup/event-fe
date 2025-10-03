@@ -23,28 +23,31 @@ const tickets = [
 
 export default function TicketsPage() {
   return (
-    <section className="stack">
+    <section className="grid gap-4">
       <div>
-        <h1>Tiket Tersedia</h1>
-        <p className="muted">Pilih tipe tiket yang sesuai dan lanjutkan ke pembayaran.</p>
+        <h1 className="text-3xl font-extrabold">Tiket Tersedia</h1>
+        <p className="text-slate-600">Pilih tipe tiket yang sesuai dan lanjutkan ke pembayaran.</p>
       </div>
 
-      <div className="grid cols-3">
+      <div className="grid gap-5 md:grid-cols-3">
         {tickets.map((t) => (
-          <article key={t.name} className="card" style={{ borderColor: t.highlight ? 'color-mix(in oklab, var(--brand) 35%, var(--border))' : undefined }}>
-            <h3 className="card-header">{t.name}</h3>
-            <div className="card-price">{t.price}</div>
-            <ul style={{ padding: 0, margin: '0.75rem 0 1rem', listStyle: 'none', color: 'var(--muted)' }}>
+          <article
+            key={t.name}
+            className={`rounded-2xl border bg-white p-5 shadow-sm ${t.highlight ? 'border-violet-300 ring-1 ring-violet-200' : 'border-slate-200'}`}
+          >
+            <h3 className="mb-1 text-lg font-extrabold">{t.name}</h3>
+            <div className="text-2xl font-extrabold">{t.price}</div>
+            <ul className="mt-3 mb-4 list-none space-y-2 text-slate-600">
               {t.perks.map((p) => (
-                <li key={p} style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.4rem' }}>
-                  <span style={{ width: 8, height: 8, background: 'var(--brand)', borderRadius: 999 }} />
+                <li key={p} className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-violet-600" />
                   {p}
                 </li>
               ))}
             </ul>
-            <div style={{ display: 'flex', gap: '.5rem' }}>
-              <Link to="/checkout" className="btn btn-primary" style={{ flex: 1 }}>Pilih</Link>
-              <Link to="/events/esports" className="btn btn-outline" style={{ flex: 1 }}>Detail</Link>
+            <div className="flex gap-2">
+              <Link to="/checkout" className="btn btn-primary flex-1">Pilih</Link>
+              <Link to="/events/esports" className="btn btn-outline flex-1">Detail</Link>
             </div>
           </article>
         ))}

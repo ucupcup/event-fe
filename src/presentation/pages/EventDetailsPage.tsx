@@ -12,10 +12,14 @@ export default function EventDetailsPage() {
 
   if (!event) {
     return (
-      <section className="stack">
-        <h1>Event Tidak Ditemukan</h1>
-        <p className="muted">Periksa kembali tautan atau pilih event lain.</p>
-        <Link to="/" className="btn btn-primary">Kembali ke Beranda</Link>
+      <section className="grid place-items-center">
+        <div className="max-w-xl rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <h1 className="text-2xl font-extrabold">Event Tidak Ditemukan</h1>
+          <p className="mt-1 text-slate-600">Periksa kembali tautan atau pilih event lain.</p>
+          <div className="mt-4">
+            <Link to="/" className="btn btn-primary">Kembali ke Beranda</Link>
+          </div>
+        </div>
       </section>
     );
   }
@@ -26,44 +30,44 @@ export default function EventDetailsPage() {
   };
 
   return (
-    <section className="stack">
-      <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-        <div style={{ position: 'relative', aspectRatio: '16 / 6', background: '#0b1220' }}>
-          {event.image && <img src={event.image} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}
+    <section className="grid gap-4">
+      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="relative aspect-[16/6] bg-slate-900">
+          {event.image && <img src={event.image} alt={event.title} className="h-full w-full object-cover" />}
         </div>
-        <div style={{ padding: '1rem' }}>
-          <span className="chip" style={{ marginBottom: '.5rem' }}>{event.category}</span>
-          <h1 style={{ margin: '.25rem 0' }}>{event.title}</h1>
-          <p className="muted">{event.date} • {event.location}</p>
+        <div className="p-4">
+          <span className="mb-2 inline-flex w-max rounded-full bg-violet-100 px-2 py-0.5 text-xs font-bold text-violet-700">{event.category}</span>
+          <h1 className="my-1 text-3xl font-extrabold">{event.title}</h1>
+          <p className="text-slate-600">{event.date} — {event.location}</p>
         </div>
       </div>
 
-      <div className="grid cols-2">
-        <div className="card stack" style={{ gap: '.75rem' }}>
-          <h3 className="card-header">Deskripsi</h3>
-          <p className="muted">Nikmati pengalaman event dengan vibes game futuristik yang imersif. Detail seputar lineup, rundown, dan fasilitas akan diperbarui secara berkala.</p>
-          <p className="muted">Silakan pilih tipe tiket di samping untuk melanjutkan pembelian.</p>
+      <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h3 className="text-lg font-extrabold">Deskripsi</h3>
+          <p className="text-slate-600">Nikmati pengalaman event dengan vibes game futuristik yang imersif. Detail seputar lineup, rundown, dan fasilitas akan diperbarui secara berkala.</p>
+          <p className="text-slate-600">Silakan pilih tipe tiket di samping untuk melanjutkan pembelian.</p>
         </div>
 
-        <div className="card stack" style={{ gap: '.75rem' }}>
-          <h3 className="card-header">Pilih Tiket</h3>
-          <div className="stack" style={{ gap: '.5rem' }}>
+        <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h3 className="text-lg font-extrabold">Pilih Tiket</h3>
+          <div className="grid gap-2">
             {event.ticketTypes.map((t) => (
-              <label key={t.id} className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '.75rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-                  <input type="radio" name="tt" checked={selected === t.id} onChange={() => setSelected(t.id)} />
-                  <div style={{ fontWeight: 800 }}>{t.name}</div>
+              <label key={t.id} className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3">
+                <div className="flex items-center gap-3">
+                  <input type="radio" name="tt" checked={selected === t.id} onChange={() => setSelected(t.id)} className="text-violet-600" />
+                  <div className="font-extrabold">{t.name}</div>
                 </div>
-                <div style={{ fontWeight: 800 }}>{formatIDR(t.price)}</div>
+                <div className="font-extrabold">{formatIDR(t.price)}</div>
               </label>
             ))}
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <button className="btn btn-outline btn-sm" onClick={() => setQty(Math.max(1, qty - 1))}>−</button>
-            <span style={{ minWidth: 24, textAlign: 'center' }}>{qty}</span>
+          <div className="flex items-center gap-2">
+            <button className="btn btn-outline btn-sm" onClick={() => setQty(Math.max(1, qty - 1))}>-</button>
+            <span className="min-w-[24px] text-center">{qty}</span>
             <button className="btn btn-outline btn-sm" onClick={() => setQty(qty + 1)}>+</button>
           </div>
-          <div style={{ display: 'flex', gap: '.5rem' }}>
+          <div className="flex gap-2">
             <button className="btn btn-primary" onClick={onAdd}>Tambahkan ke Keranjang</button>
             <Link to="/checkout" className="btn btn-outline">Lihat Keranjang</Link>
           </div>
